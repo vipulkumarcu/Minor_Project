@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/main.css">
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/ModalClass.css">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<title>Dash Board</title>
+</head>
+<body>
+        <!-- Trigger/Open The Modal -->
+        <div>
+<button onclick="document.getElementById('myModal').style.display='block'" class="button button1" id="button1">Add Assignment</button>
+<button onclick="document.getElementById('myModal2').style.display='block'" class="button button2" id="button2">Edit Assignment</button>
+<button class="button button1" onclick="window.location.href='Login.html'" style="margin-left:66%"> Log Out </button>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close"> &times; </span>
+      <h2>ADD ASSIGNMENT</h2>
+    </div> <!--  method="post" action="fileuploadservlet" -->
+    <form class="modal-body" enctype="multipart/form-data">
+        <div>
+          <br> <label><b>Enter Assignment Name</b></label> <br>
+          <input type="text" placeholder="Assignment Name" id="asgnName" required> <br> <br>
+          <label><b>Enter Faculty ID</b></label> <br>
+          <input type="text" placeholder="Faculty ID" id="facultyID" required> <br> <br>
+          <label><b>Enter Faculty E-mail</b></label> <br>
+          <input type="text" placeholder="Faculty's E-mail" id="fMail" required> <br> <br>
+          <label><b>Enter Student ID</b></label> <br>
+          <input type="text" placeholder="Student ID" id="studentID" required><br> <br>
+          <label><b>Enter Student E-mail</b></label> <br>
+          <input type="text" placeholder="Student's E-mail" id="sMail" required> <br> <br>
+          <input type="file" name="file" id="file" /> <br> <br>
+    	 <!--  <input type="submit" value="Upload" /> <br> <br> -->
+        </div>
+    </form>     
+    <div class="modal-footer">
+         <button class="newButton button3" id="button3" type="submit" onclick="addAssignment()"> Add Assignment </button>
+    </div>
+   </div>
+</div>
+
+<!-- The Modal -->
+<div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close2"> &times; </span>
+      <h2>EDIT ASSIGNMENT</h2>
+    </div>
+    <form class="modal-body" >
+        <div>
+          <br> <label><b>Assignment Order</b></label> <br>
+          <input type="text" placeholder="Assignment Order" id="aOrder" required> <br><br>
+          <label><b>Enter Assignment Name</b></label> <br>
+          <input type="text" placeholder="Assignment Name" id="asgnName2" required> <br> <br>
+          <label><b>Assigned Date</b></label> <br>
+          <input type="date" placeholder="Assigned Date" id="assignedDate" required><br><br>
+          <label><b>Enter Student ID</b></label> <br>
+          <input type="text" placeholder="Student ID" id="studentID2" required><br> <br>
+          <label><b>Enter Student E-mail</b></label> <br>
+          <input type="text" placeholder="Student's E-mail" id="sMail2" required> <br> <br>
+          <label><b>Enter Faculty E-mail</b></label> <br>
+          <input type="text" placeholder="Faculty's E-mail" id="fMail2" required> <br> <br>
+          <label><b>Enter Assignment Score</b></label> <br>
+          <input type="text" placeholder="Score" id="score" required> <br> <br>
+        </div>
+      </form> 
+    <div class="modal-footer">
+       <button class="newButton button3" id="button3" type="submit" onclick="editAssignment()" > Edit Assignment </button>
+    </div>
+  </div>
+</div>
+
+  <br> <br>
+  <table id="mytable" >
+	<tr class="tbody tr" style="border-bottom: .19rem solid orange;">
+		<th>Submission Order</th>
+		<th>Assignment Name</th>
+		<th>Submission Date</th>
+		<th>Assigned Date</th>
+		<th>Faculty Id</th>
+		<th>Faculty E-mail</th>
+		<th>Student Id</th>
+		<th>Student E-mail</th>
+		<th>Score</th>
+		<th>Assignment File</th>
+	</tr> 
+	</table>
+	
+</body>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("button1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() 
+{
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() 
+{
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) 
+{
+  if (event.target == modal) 
+  {
+    modal.style.display = "none";
+  }
+}
+
+
+// Get the modal
+var modal2 = document.getElementById("myModal2");
+
+// Get the button that opens the modal
+var btn2 = document.getElementById("button2");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close2")[0];
+
+// When the user clicks the button, open the modal 
+btn2.onclick = function() 
+{
+  modal2.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() 
+{
+  modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) 
+{
+  if (event.target == modal) 
+  {
+    modal.style.display = "none";
+  }
+}
+
+
+
+	let url = new URL(window.location.href);
+	let searchParams = new URLSearchParams(url.search);
+	var username=searchParams.get('username');
+	var level=searchParams.get('level');
+	var loadURL="http://localhost:8082/Minor_Project/loadTable?username="+username+"&level="+level;
+	if(level=="0"){
+		document.getElementById("button2").style.display='none';
+		loadData();
+	}
+	else if(level=="1"){
+		document.getElementById("button1").style.display='none';
+		loadData();
+	}
+	
+	async function loadData()
+	{
+		 var result=await(await fetch(loadURL)).json()
+		 console.log(result);
+		 var table = document.getElementById('mytable');
+         result.forEach(function(object) 
+         {
+             var tr = document.createElement('tr');
+             tr.innerHTML = '<td>' + object.S_No + '</td>' +
+             '<td>' + object.Assignment_Name + '</td>' +
+             '<td>' + object.Submission_Date + '</td>' +
+             '<td>' + object.Assigned_Date + '</td>' +
+             '<td>' + object.Faculty_ID + '</td>' +
+             '<td>' + object.Faculty_Email + '</td>' +
+             '<td>' + object.Student_ID + '</td>' +
+             '<td>' + object.Student_Email + '</td>' +
+             '<td>' + object.Score + '</td>'+
+             '<td><a href="file:///' + object.File_Path + '">View</a></td>';
+             table.appendChild(tr);
+         });
+	}
+	
+	async function addAssignment()
+	{
+		var fileUploaded=document.getElementById("file").files[0];
+		var assignmentName=document.getElementById("asgnName").value;
+		var facultyID=document.getElementById("facultyID").value;
+		var facultyMail=document.getElementById("fMail").value;
+		var studentID=document.getElementById("studentID").value;
+		var studentMail=document.getElementById("sMail").value;
+		var addurl="http://localhost:8082/Minor_Project/AddAssignment?asgnName="+assignmentName+"&facultyID="+facultyID+"&fMail="+facultyMail+"&studentID="+studentID+"&sMail="+studentMail+"&file="+fileUploaded;
+		console.log(addurl)
+		const formData = new FormData()
+		formData.append('asgnName', assignmentName)
+  		formData.append('facultyID', facultyID)
+		formData.append('fMail', facultyMail)
+ 		formData.append('studentID', studentID)
+		formData.append('sMail', studentMail)
+ 		formData.append('file', fileUploaded)
+		const response= await fetch('AddAssignment', 
+		{
+  		  method: 'POST',
+  		  body: formData
+ 		 })
+		console.log(response)
+		alert("Assignment Added Successfully");
+		window.location.reload();
+	}
+
+	async function editAssignment()
+	{
+		var assignmentOrder=document.getElementById("aOrder").value;
+		var assignmentName2=document.getElementById("asgnName2").value;
+		var assignedDate=document.getElementById("assignedDate").value;
+		var studentID2=document.getElementById("studentID2").value;
+		var studentMail2=document.getElementById("sMail2").value;
+		var facultyMail2=document.getElementById("fMail2").value;
+		var score=document.getElementById("score").value;
+		var addurl="http://localhost:8082/Minor_Project/EditAssignment?aOrder="+assignmentOrder+"&asgnName2="+assignmentName2+"&assignedDate="+assignedDate+"&studentID2="+studentID2+"&sMail2="+studentMail2+"&fMail2="+facultyMail2+"&score="+score;
+		console.log(addurl)
+		const response = await fetch(addurl);
+		console.log(response)
+		alert("Assignment Edited Successfully");
+		window.location.reload();
+	}
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<link rel="stylesheet" href="css/index.css">
+<script type="text/javascript" src="js/valid.js">
+</script>
+</head>
+<body>
+<div class="login-container">
+        <img class="image" src="images/hrc-logo.svg" alt="highradius-logo">
+        <div class="header-img"> 
+            <img src="images/human-machine-hand-homepage.svg" alt="highradius-logo">
+        </div>
+        <div class="comment">
+            <p>ORDER MANAGEMENT APPLICATION</p>
+        </div>
+        <div class="sign_in">
+            <form onsubmit="return validated()" action="login.jsp" method="post">
+                <label id="sign" for="sign" style="color:grey;">Sign in</label><br><br>
+                <label for="username" style="font-family:Arial, Helvetica, sans-serif;">username</label><br>
+                <input type="text" id="username" name="username" size="45">
+                <br><br>
+                <label for="password" style="font-family:Arial, Helvetica, sans-serif;">password</label><br>
+                <input type="password" id="password" name="password" size="45">
+                <br><br><br><br>
+                <input id="submit_button" type="submit" value="Sign in" />
+            </form>
+        </div>
+    </div>
+ </body>
+</html>

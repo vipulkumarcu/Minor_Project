@@ -1,0 +1,1 @@
+INDEX VERSION 1.4+D:\Projects\Highradius_Winter_Internship-20210806T133134Z-001\Highradius_Winter_Internship\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes

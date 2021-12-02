@@ -1,0 +1,30 @@
+#mytable
+{
+  border-collapse: collapse;
+  background:#dbf8ff;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height:100%;
+}
+
+.selected{background-color:#fed8b1;font-weight: bold}
+tbody tr:nth-child(odd)
+{
+  background-color: #FFFFFF;
+}
+th
+{
+	border-bottom:3px solid orange;
+	font-size:18px;
+	text-align:center;
+	padding: 8px;
+}
+td
+{
+	font-size:18px;
+	text-align:center;
+	padding: 8px;
+}

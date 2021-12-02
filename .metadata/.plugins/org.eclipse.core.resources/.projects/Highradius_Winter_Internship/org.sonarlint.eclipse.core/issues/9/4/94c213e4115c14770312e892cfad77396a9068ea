@@ -1,0 +1,26 @@
+
+r
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Ş™â­ûÿÿÿÿH!RBLOCKERZBUG
+s
+java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.(È€ÕÎüÿÿÿÿH"RBLOCKERZBUG
+m
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚ıÖœH#RBLOCKERZBUG
+l
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Î÷TH$RBLOCKERZBUG
+r
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Çñ”ûúÿÿÿÿH%RBLOCKERZBUG
+|	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ğ§…æøÿÿÿÿH&RMINORZ
+CODE_SMELL
+i
+java:S2259"@A "NullPointerException" could be thrown; "rs" is nullable here.(íôÚÇşÿÿÿÿH'RMAJORZBUG
+j
+java:S1118":Add a private constructor to hide the implicit public one.(ğ§…æøÿÿÿÿH(RMAJORZ
+CODE_SMELL
+‰
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ËõğúÿÿÿÿH)RMINORZ
+CODE_SMELL
+]
+java:S4925"-Remove this "Class.forName()", it is useless.(¹µÖÁüÿÿÿÿH*RMAJORZ
+CODE_SMELL
+c	java:S106$"9Replace this use of System.out or System.err by a logger.(°¿¦ìH+RMAJORZ
+CODE_SMELL

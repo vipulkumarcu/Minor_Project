@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<title>Login Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/ModalClass.css">
+<head>
+</head>
+<body>
+<div class="login-container">
+        <div class="header-img"> 
+            <img src="images/homepage.jpg" alt="ASSIGNMENT MANAGEMENT SYSTEM">
+        </div>
+        <div class="comment">
+            <p>ASSIGNMENT MANAGEMENT SYSTEM</p>
+        </div>
+        <div class="sign_in">
+            <button onclick="document.getElementById('myModal').style.display='block'" class="button button1" id="button1"> Faculty Sign Up</button> <br> <br> 
+            <button onclick="document.getElementById('myModal2').style.display='block'" class="button button2" id="button2"> Student Sign Up</button>
+        </div>
+    </div>
+    
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close"> &times; </span>
+      <img src="images/teacher-avatar.jpg" alt="Avatar" width="200" height="200" style="vertical-align:centre">
+    </div>
+    <form class="modal-body" >
+        <div>
+          <br> <label><b>Enter Faculty ID</b></label> <br>
+          <input type="text" placeholder="Faculty ID" id="facultyID" required> <br> <br>
+          <label><b>Enter Faculty E-mail</b></label> <br>
+          <input type="text" placeholder="E-mail" id="fMail" required> <br> <br>
+          <label><b>Enter Your Gender</b></label> <br>
+          <input type="text" placeholder="Gender" id="fGender" required> <br> <br>
+          <label><b>Enter Your Password</b></label> <br> <br>
+          <input type="password" placeholder="Password" id="fPassword" required> <br> <br>
+        </div>
+      </form>
+
+     <div class="modal-footer">
+       <button class="newButton button3" id="button3" type="submit" onclick="facultysignup()"> Sign Up </button>
+    </div>
+
+    </div>
+  </div>
+
+
+<!-- The Modal -->
+<div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close2"> &times; </span>
+      <img src="images/student-avatar.jpg" alt="Avatar" width="200" height="200" style="vertical-align:centre">
+    </div>
+    <form class="modal-body" >
+        <div>
+          <br> <label><b>Enter Student ID</b></label> <br>
+          <input type="text" placeholder="Student ID" id="studentID" required> <br> <br>
+          <label><b>Enter Student E-mail</b></label> <br>
+          <input type="text" placeholder="E-mail" id="sMail" required> <br> <br>
+          <label><b>Enter Your Gender</b></label> <br>
+          <input type="text" placeholder="Gender" id="sGender" required> <br> <br>
+          <label><b>Enter Your Semester</b></label> <br>
+          <input type="text" placeholder="Gender" id="sSemester" required> <br> <br>
+          <label><b>Enter Your Password</b></label> <br> <br>
+          <input type="password" placeholder="Password" id="sPassword" required> <br> <br>
+        </div>
+      </form>
+
+     <div class="modal-footer">
+       <button class="newButton button3" id="button3" type="submit" onclick="studentsignup()"> Sign Up </button>
+    </div>
+    
+      </div>
+    </div>
+ 
+ <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("button1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() 
+{
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() 
+{
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) 
+{
+  if (event.target == modal) 
+  {
+    modal.style.display = "none";
+  }
+}
+
+
+// Get the modal
+var modal2 = document.getElementById("myModal2");
+
+// Get the button that opens the modal
+var btn2 = document.getElementById("button2");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close2")[0];
+
+// When the user clicks the button, open the modal 
+btn2.onclick = function() 
+{
+  modal2.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() 
+{
+  modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) 
+{
+  if (event.target == modal) 
+  {
+    modal.style.display = "none";
+  }
+}
+
+async function facultysignup()
+{
+	var facultyID=document.getElementById("facultyID").value;
+	var facultyMail=document.getElementById("fMail").value;
+	var facultyGender=document.getElementById("fGender").value;
+	var facultyPassword=document.getElementById("fPassword").value;
+	var addurlf="http://localhost:8082/Minor_Project/FacultySignupServlet?&facultyID="+facultyID+"&fMail="+facultyMail+"&fGender="+facultyGender+"&fPassword="+facultyPassword;
+	console.log(addurlf)
+	const response = await fetch(addurlf);
+	console.log(response)
+	alert("Sign Up Successful. Taking You To Login Page");
+	window.location.href="http://localhost:8082/Minor_Project/Login.html";
+}
+
+async function studentsignup()
+{
+	var studentID=document.getElementById("studentID").value;
+	var studentMail=document.getElementById("sMail").value;
+	var studentGender=document.getElementById("sGender").value;
+	var studentSemester=document.getElementById("sSemester").value;
+	var studentPassword=document.getElementById("sPassword").value;
+	var addurls="http://localhost:8082/Minor_Project/StudentSignupServlet?&studentID="+studentID+"&sMail="+studentMail+"&sGender="+studentGender+"&sSemester="+studentSemester+"&sPassword="+studentPassword;
+	console.log(addurls)
+	const response = await fetch(addurls);
+	console.log(response)
+	alert("Sign Up Successful. Taking You To Login Page");
+	window.location.href="http://localhost:8082/Minor_Project/Login.html";
+}
+
+</script>
+            
+</body>
+</html>
